@@ -11,12 +11,12 @@
   "scripts": {
     "clean:ios": "rimraf ios",
     "rebuild:ios": "rimraf ios && npx cap add ios && npx cap sync",
+    "gen:icon": "npx capacitor-assets generate --ios",
     "copy:ios": "npx cap copy ios",
     "open:ios": "npx cap open ios",
     "archive:ios": "xcodebuild archive -workspace ios/App/App.xcworkspace -scheme App -configuration Release -archivePath ios/build/App.xcarchive",
     "export:ipa": "xcodebuild -exportArchive -archivePath ios/build/App.xcarchive -exportOptionsPlist ios/exportOptions.plist -exportPath ios/output",
     "build:ipa": "npm run rebuild:ios && npm run archive:ios && npm run export:ipa",
-    "clean:build-artifact": "rimraf ios/build ios/output",
-    "gen:icon": "npx capacitor-assets generate --ios"
+    "clean:build-artifact": "rimraf ios/build ios/output"
   }
 }
