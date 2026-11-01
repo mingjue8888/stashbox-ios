@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="./logo.png">
+    <link rel="stylesheet" href="./css/bulma.min.css">
+    <link rel="stylesheet" href="./css/feishu.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Stash Box - A fully offline encryption tool</title>
+</head>
+<body>
+    <section class="hero is-primary" style="position:relative">
+        <div class="select is-small" style="position:absolute;top:12px;right:16px">
+            <select id="langSel" style="min-width:8rem">
+                <option value="" selected>🌐</option>
+                <option value="de">Deutsch</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
+                <option value="ru">Русский</option>
+                <option value="th">ไทย</option>
+                <option value="vi">Tiếng Việt</option>
+                <option value="zh">中文</option>
+                <option value="hk">繁體中文</option>
+            </select>
+        </div>
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-3 hero-dark" data-i18n="title"></h1>
+                <p class="subtitle is-6 hero-dark" style="margin-top:0.3rem" data-i18n="subtitle"></p>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-desktop">
+                <!-- ===== 加密 ===== -->
+                <div class="column is-half">
+                    <div class="box">
+                        <h2 class="title is-4" data-i18n="encTitle"></h2>
+                        <div class="field">
+                            <label class="label" data-i18n="encPassLabel"></label>
+                            <div class="field has-addons">
+                                <div class="control is-expanded">
+                                    <input id="encPass" class="input" type="password" autocomplete="new-password" data-i18n-ph="encPassPh" placeholder="">
+                                </div>
+                                <div class="control">
+                                    <button id="encEye" class="button" type="button" aria-label="长按显示密码"><span class="icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" data-i18n="encTextLabel"></label>
+                            <div class="control">
+                                <textarea id="encText" class="textarea" autocomplete="off" data-i18n-ph="encTextPh" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                        <button id="btnEncrypt" class="button is-primary is-fullwidth" data-i18n="btnEncrypt"></button>
+
+                        <div class="field mt-4">
+                            <label class="label" data-i18n="encOutLabel"></label>
+                            <div class="control">
+                                <textarea id="encOut" class="textarea mono" readonly autocomplete="off" data-i18n-ph="encOutPh" placeholder=""></textarea>
+                            </div>
+                            <div class="has-text-right mt-2"><button id="btnCopy" class="button is-small is-light" data-i18n="btnCopy"></button></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ===== 解密 ===== -->
+                <div class="column is-half">
+                    <div class="box">
+                        <h2 class="title is-4" data-i18n="decTitle"></h2>
+                        <div class="field">
+                            <label class="label" data-i18n="decPassLabel"></label>
+                            <div class="field has-addons">
+                                <div class="control is-expanded">
+                                    <input id="decPass" class="input" type="password" autocomplete="new-password" data-i18n-ph="decPassPh" placeholder="">
+                                </div>
+                                <div class="control">
+                                    <button id="decEye" class="button" type="button" aria-label="长按显示密码"><span class="icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></span></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label class="label" data-i18n="decBoxLabel"></label>
+                            <div class="control">
+                                <textarea id="decBox" class="textarea mono" autocomplete="off" data-i18n-ph="decBoxPh" placeholder=""></textarea>
+                            </div>
+                        </div>
+
+                        <button id="btnDecrypt" class="button is-primary is-fullwidth" data-i18n="btnDecrypt"></button>
+
+                        <div id="decStatus" class="notification mt-4" style="display:none"></div>
+
+                        <div class="field mt-4">
+                            <label class="label" data-i18n="decOutLabel"></label>
+                            <div class="control">
+                                <textarea id="decOut" class="textarea" readonly autocomplete="off" data-i18n-ph="decOutPh" placeholder=""></textarea>
+                            </div>
+                            <div class="has-text-right mt-2"><button id="btnCopyPlain" class="button is-small is-light" data-i18n="btnCopyPlain"></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="has-text-grey format-line" data-i18n="footer1"></p>
+            <p class="has-text-grey-light format-line mt-2" data-i18n="footer2"></p>
+        </div>
+    </footer>
+
+    <div id="toast" class="notification is-info" style="position:fixed;right:16px;bottom:16px;z-index:99"></div>
+
+    <script src="./lib/argon2-bundled.min.js"></script>
+    <script src="./lib/rxjs.umd.min.js"></script>
+    <script src="./lib/argon2id-aes256gcm.umd.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
