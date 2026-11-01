@@ -1,5 +1,5 @@
 html { scroll-behavior: auto; }
-body { font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", "Times New Roman", serif; }
+body { font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", "Times New Roman", serif; padding-top: env(safe-area-inset-top); }
 .hero { background: #f5f7fb; }
 .hero .hero-dark { color: #000 !important; }
 .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }

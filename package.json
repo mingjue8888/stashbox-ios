@@ -4,6 +4,19 @@
     "@capacitor/ios": "^8.6.0"
   },
   "devDependencies": {
-    "@capacitor/cli": "^8.6.0"
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.0",
+    "rimraf": "^6.1.3"
+  },
+  "scripts": {
+    "clean:ios": "rimraf ios",
+    "rebuild:ios": "rimraf ios && npx cap add ios && npx cap sync",
+    "copy:ios": "npx cap copy ios",
+    "open:ios": "npx cap open ios",
+    "archive:ios": "xcodebuild archive -workspace ios/App/App.xcworkspace -scheme App -configuration Release -archivePath ios/build/App.xcarchive",
+    "export:ipa": "xcodebuild -exportArchive -archivePath ios/build/App.xcarchive -exportOptionsPlist ios/exportOptions.plist -exportPath ios/output",
+    "build:ipa": "npm run rebuild:ios && npm run archive:ios && npm run export:ipa",
+    "clean:build-artifact": "rimraf ios/build ios/output",
+    "gen:icon": "npx capacitor-assets generate --ios"
   }
 }
